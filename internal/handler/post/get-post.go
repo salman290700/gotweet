@@ -1,17 +1,16 @@
-package user
+package post
 
 import (
-	"fmt"
 	"gotweet/internal/dto"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-func (h *Handler) Login(c *gin.Context) {
+func (h *Handler) GetPost(c *gin.Context) {
 	var (
 		ctx = c.Request.Context()
-		req dto.LoginRequst
+		req dto.GetPostRequest
 	)
 
 	if err := c.Copy().ShouldBindJSON(&req); err != nil {
@@ -27,18 +26,13 @@ func (h *Handler) Login(c *gin.Context) {
 		})
 		return
 	}
-
-	token, refresh_token, setStatusCode, err := h.userService.Login(ctx, &req)
-	fmt.Println(err)
+	UserID := c.GetInt64("userID")
+	res, setStatusCode, err := h.postService.GetPost(ctx, &req, UserID)
 	if err != nil {
 		c.JSON(setStatusCode, gin.H{
 			"message": err,
 		})
 		return
 	}
-	data := &dto.LoginResponse{
-		Token:        token,
-		RefreshToken: refresh_token,
-	}
-	c.JSON(setStatusCode, data)
+	c.JSON(setStatusCode, res)
 }

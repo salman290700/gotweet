@@ -44,7 +44,7 @@ func main() {
 	userService := userService.NewService(cfg, userRepo)
 	postService := postService.NewPostService(cfg, postRepo)
 	userhandler := user.NewHandler(r, validate, userService)
-	postHandler := post.NewPostHandler(r, validate, &postService)
+	postHandler := post.NewPostHandler(r, validate, postService)
 	userhandler.RouteList(cfg.SecretJwt)
 	postHandler.RoutePostList(cfg.SecretJwt)
 	r.GET("/", func(ctx *gin.Context) {

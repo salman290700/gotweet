@@ -30,5 +30,6 @@ func (h *Handler) RoutePostList(secret string) {
 	postRouter := h.api.Group("/post")
 
 	postRouter.Use(middleware.AuthMiddleware(secret))
-
+	postRouter.POST("/create-post", h.CreatePosthandler)
+	postRouter.POST("/get-post")
 }

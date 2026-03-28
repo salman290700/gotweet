@@ -8,6 +8,7 @@ import (
 
 type PostRepository interface {
 	CreatePost(ctx context.Context, model *model.PostModel) (int64, error)
+	GetPost(ctx context.Context, post_id int64) (*model.PostModel, error)
 }
 
 type postRepository struct {
