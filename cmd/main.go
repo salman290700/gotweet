@@ -55,6 +55,7 @@ func main() {
 	hub := socket.NewHub()
 	socketHandler := socketRoom.NewHandler(r, hub)
 	socketHandler.RouteList(cfg.SecretJwt)
+	go hub.Run()
 	r.GET("/", func(ctx *gin.Context) {
 		fmt.Printf("ClientIP: %s\n", ctx.ClientIP())
 	})
