@@ -3,6 +3,34 @@ package model
 import "time"
 
 type (
+	// CreatorProiling only for query
+	CreatorProfiling struct {
+		CreatorID      int64
+		Name           string
+		Email          string
+		HashedPassword string
+		PhoneNumber    string
+		Province       string
+		Regency        string
+		District       string
+		SubDistrict    string
+		Villages       string
+		Address        string
+		PostallCode    int64
+	}
+
+	CreatorData struct {
+		ID          int64
+		Creator     int64
+		Email       int64
+		PhoneNumber int64
+		Address     int64
+		Version     int64
+		Status      int64
+		CreatedAt   time.Time
+		UpdatedAt   time.Time
+	}
+
 	Creator struct {
 		ID        int64
 		Name      string
@@ -12,13 +40,9 @@ type (
 	}
 
 	CreatorAddress struct {
-		ID              int64
-		CreatorId       int64
-		ProvinceCode    string
-		RegencyCode     string
-		DistrictCode    string
-		SubDistrictCode string
-		VillageCode     string
+		ID        int64
+		CreatorId int64
+		Address   Address
 	}
 
 	CreatorContact struct {
@@ -34,7 +58,6 @@ type (
 		Email     int64
 		CreatorId int64
 		CreatedAt time.Time
-		UpdatedAt time.Time
 	}
 
 	CreatorStatus struct {
@@ -42,20 +65,18 @@ type (
 		CreatorID int64
 		Status    int64
 		CreatedAt time.Time
-		UpdatedAt time.Time
 	}
 
-	CreatorData struct {
-		ID          int64
-		Name        string
-		Email       string
-		Password    string
-		PhoneNumber CreatorContact
-		Address     CreatorAddress
-		Version     int64
-		Status      int64
-		CreatedAt   time.Time
-		UpdatedAt   time.Time
+	// Addres in Indonesia
+	Address struct {
+		ID              int64
+		ProvinceCode    string
+		RegencyCode     string
+		DistrictCode    string
+		SubDistrictCode string
+		VillageCode     string
+		Address         string
+		PostalCode      int64
 	}
 
 	Email struct {

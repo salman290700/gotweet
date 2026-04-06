@@ -1,0 +1,11 @@
+-- migrate:up
+CREATE TABLE creators (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    version BIGINT NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- migrate:down
+DORP TABLE IF EXISTS creators

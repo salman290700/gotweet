@@ -1,0 +1,11 @@
+-- migrate:up
+CREATE TABLE creator_contacts (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    phone_number VARCHAR(20) NOT NULL,
+    creator_id BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- migrate:down
+DROP TABLE IF EXISTS creator_contacts
